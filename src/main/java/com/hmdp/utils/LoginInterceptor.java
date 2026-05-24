@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.hmdp.utils.RedisConstants.LOGIN_USER_KEY;
+import static com.hmdp.utils.RedisConstants.LOGIN_USER_TTL;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -42,7 +43,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         UserHolder.saveUser(userDTO);
 
-        redisTemplate.expire(key,30L, TimeUnit.MINUTES);
+        redisTemplate.expire(key,LOGIN_USER_TTL, TimeUnit.SECONDS);
         return true;
     }
 
