@@ -94,8 +94,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                         setIgnoreNullValue(true).
                         setFieldValueEditor((fieldName, fieldValue) -> fieldValue.toString()));
         String key=LOGIN_USER_KEY+token;
-        redisTemplate.opsForHash().putAll(LOGIN_USER_KEY+token,map);
-        redisTemplate.expire(key,30L,TimeUnit.MINUTES);
+        redisTemplate.opsForHash().putAll(key,map);
+        redisTemplate.expire(key,LOGIN_USER_TTL,TimeUnit.SECONDS);
         return Result.ok(token);
     }
 
