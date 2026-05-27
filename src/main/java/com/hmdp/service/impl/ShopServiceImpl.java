@@ -2,20 +2,18 @@ package com.hmdp.service.impl;
 
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.hmdp.dto.Result;
 import com.hmdp.entity.Shop;
-import com.hmdp.entity.ShopType;
 import com.hmdp.mapper.ShopMapper;
 import com.hmdp.service.IShopService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hmdp.utils.RedisData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.ReactiveNumberCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 import static com.hmdp.utils.RedisConstants.*;
@@ -36,10 +34,12 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
 
     @Override
     public Result queryById(Long id) {
-        //缓存穿透
+        // 缓存穿透
         //Shop shop = queryWithPassThrough(id);
-        //缓存击穿
-        Shop shop = queryWithMutex(id);
+        // 互斥锁解决缓存击穿
+        //Shop shop = queryWithMutex(id);
+        // 逻辑过期缓存击穿
+        Shop shop = queryWithLogicalExpire(id);
         if (shop == null) {
             return Result.fail("店铺不存在！");
         }
@@ -57,6 +57,31 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         stringRedisTemplate.delete(CACHE_SHOP_KEY+id);
 
         return Result.ok(shop);
+    }
+
+    private Shop queryWithLogicalExpire(long id) {
+        String key = CACHE_SHOP_KEY+id;
+
+        String shopJSON = stringRedisTemplate.opsForValue().get(key);
+        //缓存命中
+        if (StrUtil.isBlank(shopJSON)) {
+            return null;
+        }
+        // TODO 完成以下问题
+        // 命中
+        // 是否过期
+
+        // 否，返回
+
+        // 是，拿锁
+
+        // 拿到，新建线程重构缓存
+
+        // 没拿到，返回旧信息
+
+
+
+        return shop;
     }
 
     private Shop queryWithMutex(long id) {
@@ -133,5 +158,15 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
 
     private  void unLock(String key){
         stringRedisTemplate.delete(key);
+    }
+
+    private void saveShop2Redis(Long id, Long expireSeconds){
+        Shop shop = getById(id);
+
+        RedisData redisData = new RedisData();
+        redisData.setData(shop);
+        redisData.setExpireTime(LocalDateTime.now().plusSeconds(expireSeconds));
+
+        stringRedisTemplate.opsForValue().set(CACHE_SHOP_KEY+id,JSONUtil.toJsonStr(redisData));
     }
 }
