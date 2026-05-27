@@ -46,6 +46,19 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         return Result.ok(shop);
     }
 
+    @Override
+    public Result myUpdate(Shop shop) {
+        Long id = shop.getId();
+        if(id == null){
+            return Result.fail("店铺id不能为空！");
+        }
+
+        updateById(shop);
+        stringRedisTemplate.delete(CACHE_SHOP_KEY+id);
+
+        return Result.ok(shop);
+    }
+
     private Shop queryWithMutex(long id) {
         String key = CACHE_SHOP_KEY+id;
 
