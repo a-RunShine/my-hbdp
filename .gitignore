@@ -34,3 +34,5 @@ build/
 CLAUDE.md
 README.md
 notes/
+.DS_Store
+.codegraph/
