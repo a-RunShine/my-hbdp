@@ -33,8 +33,9 @@ public class CacheClient {
         stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(redisData));
     }
 
-    private <R,ID> R queryWithPassThrough(
+    public  <R,ID> R queryWithPassThrough(
             String preFix, ID id, Class<R> type, Function<ID,R> dbFunction,Long time, TimeUnit unit) {
+
         String key = preFix+id;
 
         String json = stringRedisTemplate.opsForValue().get(key);
@@ -60,7 +61,7 @@ public class CacheClient {
 
     private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
 
-    private <R,ID> R queryWithLogicalExpire(
+    public  <R,ID> R queryWithLogicalExpire(
             String keyPreFix, ID id, Class<R> type, Function<ID,R> dbFunction,Long time, TimeUnit unit,String lockPreFix) {
         String key = keyPreFix + id;
 
@@ -83,7 +84,6 @@ public class CacheClient {
         boolean isLock = tryLock(lockKey);
         if(isLock){
             // 拿到，新建线程重构缓存
-            //double check
             json = stringRedisTemplate.opsForValue().get(key);
             if (StrUtil.isBlank(json)) {
                 // key被删了，直接从数据库重建
@@ -95,6 +95,7 @@ public class CacheClient {
                 return r;
             }
 
+            //double check
             redisData = JSONUtil.toBean(json,RedisData.class);
             expireTime = redisData.getExpireTime();
             r = JSONUtil.toBean((JSONObject)redisData.getData(),type);
