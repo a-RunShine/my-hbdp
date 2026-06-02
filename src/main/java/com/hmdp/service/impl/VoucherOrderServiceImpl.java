@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hmdp.utils.RedisIdWorker;
 import com.hmdp.utils.SimpleRedisLock;
 import com.hmdp.utils.UserHolder;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -38,6 +40,9 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
+    @Resource
+    private RedissonClient redissonClient;
+
     @Override
     public Result secKill(Long voucherId) {
         SeckillVoucher seckillVoucher = seckillVoucherService.getById(voucherId);
@@ -53,8 +58,10 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         }
         Long userId = UserHolder.getUser().getId();
 
-        SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);
-        Boolean isLock = lock.tryLock(5L);
+//        SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);
+        RLock lock = redissonClient.getLock("lock:order:" + userId);
+
+        Boolean isLock = lock.tryLock();
         if (!isLock) {
             return Result.fail("禁止多买！");
         }
