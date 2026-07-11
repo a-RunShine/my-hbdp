@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: shared_utils
+title: 通用工具与跨层 DTO（登录拦截、缓存封装、分布式锁）
+scope:
+    - src/main/java/com/hmdp/utils/
+    - src/main/java/com/hmdp/dto/Result.java
+    - src/main/java/com/hmdp/dto/ScrollResult.java
+source_files: []
+depends_on: []
+related_to: []

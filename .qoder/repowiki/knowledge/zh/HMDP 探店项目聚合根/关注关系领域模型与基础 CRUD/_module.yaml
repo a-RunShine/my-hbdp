@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: follow_domain
+title: 关注关系领域模型与基础 CRUD
+scope:
+    - src/main/java/com/hmdp/controller/FollowController.java
+    - src/main/java/com/hmdp/service/IFollowService.java
+    - src/main/java/com/hmdp/service/impl/FollowServiceImpl.java
+    - src/main/java/com/hmdp/entity/Follow.java
+    - src/main/java/com/hmdp/mapper/FollowMapper.java
+source_files: []
+depends_on: []
+related_to: []

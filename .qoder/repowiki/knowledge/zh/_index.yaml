@@ -1,0 +1,136 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: develop
+nodes_managed: true
+exported_at: "2026-07-10T08:01:14Z"
+modules:
+    "":
+        dir_name: HMDP 探店项目聚合根
+        title: HMDP 探店项目聚合根
+        scope:
+            - pom.xml
+            - .gitignore
+            - .claude/
+        source_files: []
+        children:
+            - blog_domain
+            - config_and_infrastructure
+            - follow_domain
+            - shared_utils
+            - shop_domain
+            - user_domain
+            - voucher_seckill_domain
+        depends_on: []
+        related_to: []
+    blog_domain:
+        dir_name: 博客与评论领域模型（Blog & BlogComments）
+        title: 博客与评论领域模型（Blog & BlogComments）
+        scope:
+            - src/main/java/com/hmdp/controller/BlogController.java
+            - src/main/java/com/hmdp/controller/BlogCommentsController.java
+            - src/main/java/com/hmdp/service/IBlogService.java
+            - src/main/java/com/hmdp/service/IBlogCommentsService.java
+            - src/main/java/com/hmdp/service/impl/BlogServiceImpl.java
+            - src/main/java/com/hmdp/service/impl/BlogCommentsServiceImpl.java
+            - src/main/java/com/hmdp/entity/Blog.java
+            - src/main/java/com/hmdp/entity/BlogComments.java
+            - src/main/java/com/hmdp/mapper/BlogMapper.java
+            - src/main/java/com/hmdp/mapper/BlogCommentsMapper.java
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    config_and_infrastructure:
+        dir_name: 应用配置与基础设施装配
+        title: 应用配置与基础设施装配
+        scope:
+            - src/main/java/com/hmdp/config/
+            - src/main/resources/application.yaml
+            - src/main/resources/db/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    follow_domain:
+        dir_name: 关注关系领域模型与基础 CRUD
+        title: 关注关系领域模型与基础 CRUD
+        scope:
+            - src/main/java/com/hmdp/controller/FollowController.java
+            - src/main/java/com/hmdp/service/IFollowService.java
+            - src/main/java/com/hmdp/service/impl/FollowServiceImpl.java
+            - src/main/java/com/hmdp/entity/Follow.java
+            - src/main/java/com/hmdp/mapper/FollowMapper.java
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    shared_utils:
+        dir_name: 通用工具与跨层 DTO（登录拦截、缓存封装、分布式锁）
+        title: 通用工具与跨层 DTO（登录拦截、缓存封装、分布式锁）
+        scope:
+            - src/main/java/com/hmdp/utils/
+            - src/main/java/com/hmdp/dto/Result.java
+            - src/main/java/com/hmdp/dto/ScrollResult.java
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    shop_domain:
+        dir_name: 商铺与商铺类型领域层
+        title: 商铺与商铺类型领域层
+        scope:
+            - src/main/java/com/hmdp/controller/ShopController.java
+            - src/main/java/com/hmdp/controller/ShopTypeController.java
+            - src/main/java/com/hmdp/service/IShopService.java
+            - src/main/java/com/hmdp/service/IShopTypeService.java
+            - src/main/java/com/hmdp/service/impl/ShopServiceImpl.java
+            - src/main/java/com/hmdp/service/impl/ShopTypeServiceImpl.java
+            - src/main/java/com/hmdp/entity/Shop.java
+            - src/main/java/com/hmdp/entity/ShopType.java
+            - src/main/java/com/hmdp/mapper/ShopMapper.java
+            - src/main/java/com/hmdp/mapper/ShopTypeMapper.java
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    user_domain:
+        dir_name: 用户认证与资料管理领域
+        title: 用户认证与资料管理领域
+        scope:
+            - src/main/java/com/hmdp/controller/UserController.java
+            - src/main/java/com/hmdp/service/IUserService.java
+            - src/main/java/com/hmdp/service/impl/UserServiceImpl.java
+            - src/main/java/com/hmdp/entity/User.java
+            - src/main/java/com/hmdp/entity/UserInfo.java
+            - src/main/java/com/hmdp/mapper/UserMapper.java
+            - src/main/java/com/hmdp/dto/LoginFormDTO.java
+            - src/main/java/com/hmdp/dto/UserDTO.java
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    voucher_seckill_domain:
+        dir_name: 优惠券与秒杀下单领域层
+        title: 优惠券与秒杀下单领域层
+        scope:
+            - src/main/java/com/hmdp/controller/VoucherController.java
+            - src/main/java/com/hmdp/controller/VoucherOrderController.java
+            - src/main/java/com/hmdp/service/IVoucherService.java
+            - src/main/java/com/hmdp/service/ISeckillVoucherService.java
+            - src/main/java/com/hmdp/service/IVoucherOrderService.java
+            - src/main/java/com/hmdp/service/impl/VoucherServiceImpl.java
+            - src/main/java/com/hmdp/service/impl/SeckillVoucherServiceImpl.java
+            - src/main/java/com/hmdp/service/impl/VoucherOrderServiceImpl.java
+            - src/main/java/com/hmdp/entity/Voucher.java
+            - src/main/java/com/hmdp/entity/SeckillVoucher.java
+            - src/main/java/com/hmdp/entity/VoucherOrder.java
+            - src/main/java/com/hmdp/mapper/VoucherMapper.java
+            - src/main/java/com/hmdp/mapper/SeckillVoucherMapper.java
+            - src/main/java/com/hmdp/mapper/VoucherOrderMapper.java
+            - src/main/resources/mapper/VoucherMapper.xml
+            - src/main/resources/unlock.lua
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []

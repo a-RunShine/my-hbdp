@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: ""
+title: HMDP 探店项目聚合根
+scope:
+    - pom.xml
+    - .gitignore
+    - .claude/
+source_files: []
+depends_on: []
+related_to: []

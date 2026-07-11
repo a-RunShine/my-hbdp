@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: user_domain
+title: 用户认证与资料管理领域
+scope:
+    - src/main/java/com/hmdp/controller/UserController.java
+    - src/main/java/com/hmdp/service/IUserService.java
+    - src/main/java/com/hmdp/service/impl/UserServiceImpl.java
+    - src/main/java/com/hmdp/entity/User.java
+    - src/main/java/com/hmdp/entity/UserInfo.java
+    - src/main/java/com/hmdp/mapper/UserMapper.java
+    - src/main/java/com/hmdp/dto/LoginFormDTO.java
+    - src/main/java/com/hmdp/dto/UserDTO.java
+source_files: []
+depends_on: []
+related_to: []

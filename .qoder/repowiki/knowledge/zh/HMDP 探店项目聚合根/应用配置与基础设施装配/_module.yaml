@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: config_and_infrastructure
+title: 应用配置与基础设施装配
+scope:
+    - src/main/java/com/hmdp/config/
+    - src/main/resources/application.yaml
+    - src/main/resources/db/
+source_files: []
+depends_on: []
+related_to: []

@@ -1,0 +1,23 @@
+schema_version: 1
+module_path: voucher_seckill_domain
+title: 优惠券与秒杀下单领域层
+scope:
+    - src/main/java/com/hmdp/controller/VoucherController.java
+    - src/main/java/com/hmdp/controller/VoucherOrderController.java
+    - src/main/java/com/hmdp/service/IVoucherService.java
+    - src/main/java/com/hmdp/service/ISeckillVoucherService.java
+    - src/main/java/com/hmdp/service/IVoucherOrderService.java
+    - src/main/java/com/hmdp/service/impl/VoucherServiceImpl.java
+    - src/main/java/com/hmdp/service/impl/SeckillVoucherServiceImpl.java
+    - src/main/java/com/hmdp/service/impl/VoucherOrderServiceImpl.java
+    - src/main/java/com/hmdp/entity/Voucher.java
+    - src/main/java/com/hmdp/entity/SeckillVoucher.java
+    - src/main/java/com/hmdp/entity/VoucherOrder.java
+    - src/main/java/com/hmdp/mapper/VoucherMapper.java
+    - src/main/java/com/hmdp/mapper/SeckillVoucherMapper.java
+    - src/main/java/com/hmdp/mapper/VoucherOrderMapper.java
+    - src/main/resources/mapper/VoucherMapper.xml
+    - src/main/resources/unlock.lua
+source_files: []
+depends_on: []
+related_to: []

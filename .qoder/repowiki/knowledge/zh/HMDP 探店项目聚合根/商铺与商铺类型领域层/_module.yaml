@@ -1,0 +1,17 @@
+schema_version: 1
+module_path: shop_domain
+title: 商铺与商铺类型领域层
+scope:
+    - src/main/java/com/hmdp/controller/ShopController.java
+    - src/main/java/com/hmdp/controller/ShopTypeController.java
+    - src/main/java/com/hmdp/service/IShopService.java
+    - src/main/java/com/hmdp/service/IShopTypeService.java
+    - src/main/java/com/hmdp/service/impl/ShopServiceImpl.java
+    - src/main/java/com/hmdp/service/impl/ShopTypeServiceImpl.java
+    - src/main/java/com/hmdp/entity/Shop.java
+    - src/main/java/com/hmdp/entity/ShopType.java
+    - src/main/java/com/hmdp/mapper/ShopMapper.java
+    - src/main/java/com/hmdp/mapper/ShopTypeMapper.java
+source_files: []
+depends_on: []
+related_to: []
